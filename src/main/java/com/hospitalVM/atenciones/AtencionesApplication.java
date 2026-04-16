@@ -1,13 +1,13 @@
-package com.hospitalVM.atencion;
+package com.hospitalVM.atenciones;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AtencionApplication {
+public class AtencionesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AtencionApplication.class, args);
+		SpringApplication.run(AtencionesApplication.class, args);
 	}
 
 }
