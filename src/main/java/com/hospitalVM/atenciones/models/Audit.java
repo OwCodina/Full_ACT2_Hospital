@@ -24,19 +24,11 @@ public class Audit {
     @Column(name = "updated_at")
     private LocalDate updateAt;
 
-
-    /**
-     * Con este método genero autmaticamente la fecha de creacion de algún
-     * elemento
-     */
     @PrePersist
     public void prePersist(){
         this.createAt = LocalDate.now();
     }
 
-    /**
-     * Con este método genero automaticamente la fecha de la última modificación
-     */
     @PreUpdate
     public void preUpdate(){
         this.updateAt = LocalDate.now();

@@ -1,5 +1,6 @@
 package com.hospitalVM.atenciones.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hospitalVM.atenciones.models.Audit;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -12,6 +13,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pacientes")
@@ -21,12 +24,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Paciente {
 
-    /**
-     * @Id -> Se define como la llave primaria del elemento
-     * @GeneratedValue -> Nos permite generar un id de la primary key de forma automática
-     * @Column -> Nos permite modificar la propiedad de un campo, por ejemplo que no se nulo
-     * que tenga un valor único o como se llamará en la BD.
-     */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_paciente")
@@ -56,4 +54,8 @@ public class Paciente {
 
     @Embedded
     com.hospitalVM.atenciones.models.Audit audit = new Audit();
+
+    @JsonManagedReference("paciente-medico")
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Atencion> atenciones = new ArrayList<>();
 }
